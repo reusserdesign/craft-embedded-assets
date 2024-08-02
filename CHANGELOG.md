@@ -1,5 +1,10 @@
 # Changelog
 
+## 5.1.1 - 2024-08-02
+
+### Fixed
+- Fixed a bug where Google Maps share links were not working
+
 ## 5.1.0 - 2024-04-22
 
 ### Added
