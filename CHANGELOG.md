@@ -32,6 +32,11 @@
 - Removed Craft 4 compatibility
 - Removed `spicyweb\embeddedassets\models\Settings::$showFieldLinkIcon`
 
+## 4.1.1 - 2024-08-02
+
+### Fixed
+- Fixed a bug where Google Maps share links were not working
+
 ## 4.1.0 - 2024-04-22
 
 ### Added

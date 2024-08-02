@@ -98,6 +98,7 @@ class Service extends Component
         $embedSettings = [
             'oembed:query_parameters' => [],
         ];
+        $clientSettings = [];
 
         if (!empty($pluginSettings->parameters)) {
             foreach ($pluginSettings->parameters as $parameter) {
@@ -109,12 +110,15 @@ class Service extends Component
 
         if ($pluginSettings->googleKey) {
             $embedSettings['google:key'] = Craft::parseEnv($pluginSettings->googleKey);
+
+            // Google Maps share links don't redirect if the user agent is left as default
+            // Set an Embed user agent here, since maps won't work anyway if the key isn't set
+            $clientSettings['user_agent'] = 'Embed PHP library';
         }
         if ($pluginSettings->facebookKey) {
             $embedSettings['facebook:token'] = $embedSettings['instagram:token'] = Craft::parseEnv($pluginSettings->facebookKey);
         }
 
-        $clientSettings = [];
         $adapters = [
             'akamaized.net' => AkamaiExtractor::class,
             'bsky.app' => BlueskyExtractor::class,
@@ -125,6 +129,7 @@ class Service extends Component
             'sharepoint.com' => SharepointExtractor::class,
         ];
 
+        // Because Embed doesn't do pattern matching on hosts anymore
         if (
             preg_match('/:\/\/maps.google.([a-z\.]+)\/?/', $url, $matches) ||
             preg_match('/:\/\/www.google.([a-z\.]+)\/maps\/?/', $url, $matches)
@@ -164,7 +169,14 @@ class Service extends Component
             $factory->addAdapter($host, $class);
         }
 
-        $factory->setDefault(DefaultExtractor::class);
+        // Hacky stuff to get Google Maps share link redirects to use the correct extractor
+        // Also because Embed doesn't do pattern matching on hosts anymore
+        if (str_starts_with($url, 'https://maps.app.goo.gl/')) {
+            $factory->setDefault(GoogleMapsExtractor::class);
+        } else {
+            $factory->setDefault(DefaultExtractor::class);
+        }
+
         $factory->addDetector('type', TypeDetector::class);
         $embed->setSettings($embedSettings);
 

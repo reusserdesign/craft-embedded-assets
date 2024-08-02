@@ -50,6 +50,12 @@ class Code extends BaseCodeDetector
     {
         $mode = $this->extractor->getMode();
         $requestUrl = $this->extractor->getRequest()->getUri();
+
+        if (str_starts_with((string)$requestUrl, 'https://maps.app.goo.gl/')) {
+            // Get redirected URI
+            $requestUrl = $this->extractor->getUri();
+        }
+
         $responsePath = $requestUrl->getPath();
         $pos = $this->_getPosition($mode, $responsePath);
         $iframeUrl = Url::hostInfo($requestUrl) . '/maps/embed/v1/' . match ($mode) {
