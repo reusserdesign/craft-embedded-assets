@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 4.1.1 - 2024-08-02
 
 ### Fixed
 - Fixed a bug where Google Maps share links were not working
