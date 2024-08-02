@@ -110,9 +110,13 @@ class Code extends BaseCodeDetector
         ];
 
         if ($mode === 'view') {
-            $pos = explode(',', getDirectory($path, 1));
-            $position['coordinates'] = str_replace('@', '', $pos[0]).','.$pos[1];
-            $position['zoom'] = str_replace('z', '', $pos[2]);
+            foreach (explode('/', $path) as $pathComponent) {
+                if (str_starts_with($pathComponent, '@')) {
+                    $pos = explode(',', $pathComponent);
+                    $position['coordinates'] = str_replace('@', '', $pos[0]).','.$pos[1];
+                    $position['zoom'] = str_replace('z', '', $pos[2]);
+                }
+            }
         }
 
         if ($mode === 'streetview') {
