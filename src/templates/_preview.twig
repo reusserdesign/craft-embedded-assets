@@ -5,7 +5,7 @@
 	<title>{{ embeddedAsset.title }}</title>
 	{% set previewCss = view.getAssetManager().getPublishedUrl('@spicyweb/embeddedassets/assets/preview/dist/', true, 'styles/preview.css') %}
 	<link rel="stylesheet" href="{{ previewCss }}">
-	{% set previewCss = view.getAssetManager().getPublishedUrl('@spicyweb/embeddedassets/assets/preview/dist/', true, 'scripts/preview.js') %}
+	{% set previewJs = view.getAssetManager().getPublishedUrl('@spicyweb/embeddedassets/assets/preview/dist/', true, 'scripts/preview.js') %}
 	<script src="{{ previewJs }}"></script>
 	{% if callback is defined and callback %}
 		<script>EmbeddedAssetsPreview.addCallback('{{ callback|e('js') }}')</script>
