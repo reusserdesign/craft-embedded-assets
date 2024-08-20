@@ -37,6 +37,11 @@
 - Removed Craft 4 compatibility
 - Removed `spicyweb\embeddedassets\models\Settings::$showFieldLinkIcon`
 
+## 4.1.2 - 2024-08-20
+
+### Fixed
+- Fixed a compatibility issue with Craft Cloud
+
 ## 4.1.1 - 2024-08-02
 
 ### Fixed
