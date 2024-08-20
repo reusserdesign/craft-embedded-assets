@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased
+
+### Fixed
+- Fixed a compatibility issue with Craft Cloud
+
 ## 4.1.1 - 2024-08-02
 
 ### Fixed
