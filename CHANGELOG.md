@@ -1,5 +1,10 @@
 # Changelog
 
+## 5.1.2 - 2024-08-20
+
+### Fixed
+- Fixed a compatibility issue with Craft Cloud
+
 ## 5.1.1 - 2024-08-02
 
 ### Fixed
