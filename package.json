@@ -1,7 +1,7 @@
 {
   "name": "craft-embedded-assets",
   "version": "5.1.2",
-  "description": "Manage YouTube videos, Instagram photos, Twitter posts and more as first class assets",
+  "description": "Manage YouTube videos, Instagram photos and more as first class assets",
   "private": true,
   "main": "webpack.config.js",
   "scripts": {
@@ -20,8 +20,7 @@
     "assets",
     "youtube",
     "vimeo",
-    "instagram",
-    "twitter"
+    "instagram"
   ],
   "author": "Spicy Web",
   "contributors": [
