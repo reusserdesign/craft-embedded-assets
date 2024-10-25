@@ -2,8 +2,8 @@
 
 namespace spicyweb\embeddedassets\adapters\googlemaps\detectors;
 
-use function Embed\getDirectory;
 use spicyweb\embeddedassets\adapters\default\detectors\Title as BaseTitleDetector;
+use function Embed\getDirectory;
 
 /**
  * Embed title detector class for Google Maps.

@@ -11,7 +11,6 @@ use craft\validators\StringValidator;
 use craft\validators\UrlValidator;
 use JsonSerializable;
 use spicyweb\embeddedassets\Plugin as EmbeddedAssets;
-use spicyweb\embeddedassets\validators\Image as ImageValidator;
 use spicyweb\embeddedassets\validators\TwigMarkup as TwigMarkupValidator;
 use Twig\Markup as TwigMarkup;
 use yii\base\Exception;
@@ -264,7 +263,6 @@ class EmbeddedAsset extends Model implements JsonSerializable
         } else {
             parent::__set($name, $value);
         }
-
     }
 
     /**

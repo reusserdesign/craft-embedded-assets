@@ -2,8 +2,8 @@
 
 namespace spicyweb\embeddedassets\adapters\sharepoint;
 
-use spicyweb\embeddedassets\adapters\sharepoint\detectors\Url;
 use spicyweb\embeddedassets\adapters\default\Extractor as BaseExtractor;
+use spicyweb\embeddedassets\adapters\sharepoint\detectors\Url;
 
 /**
  * Embed extractor class for Sharepoint.

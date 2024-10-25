@@ -70,8 +70,8 @@ class Code extends BaseCodeDetector
             'streetview' => [
                 'location' => $pos['coordinates'],
                 'heading' => $pos['heading'],
-                'pitch' =>  $pos['pitch'],
-                'fov' =>  $pos['fov'],
+                'pitch' => $pos['pitch'],
+                'fov' => $pos['fov'],
             ],
             'place' => [
                 'q' => getDirectory($responsePath, 2),
@@ -106,14 +106,14 @@ class Code extends BaseCodeDetector
             'zoom' => '4',
             'heading' => '0',
             'pitch' => '0',
-            'fov' => '90'
+            'fov' => '90',
         ];
 
         if ($mode === 'view') {
             foreach (explode('/', $path) as $pathComponent) {
                 if (str_starts_with($pathComponent, '@')) {
                     $pos = explode(',', $pathComponent);
-                    $position['coordinates'] = str_replace('@', '', $pos[0]).','.$pos[1];
+                    $position['coordinates'] = str_replace('@', '', $pos[0]) . ',' . $pos[1];
                     $position['zoom'] = str_replace('z', '', $pos[2]);
                 }
             }
@@ -121,7 +121,7 @@ class Code extends BaseCodeDetector
 
         if ($mode === 'streetview') {
             $pos = explode(',', getDirectory($path, 1));
-            $position['coordinates'] = str_replace('@', '', $pos[0]).','.$pos[1];
+            $position['coordinates'] = str_replace('@', '', $pos[0]) . ',' . $pos[1];
             $position['zoom'] = str_replace('a', '', $pos[2]); // seems not used by google (emulated by other params)
             $position['heading'] = str_replace('h', '', $pos[4]);
             $position['fov'] = str_replace('y', '', $pos[3]);

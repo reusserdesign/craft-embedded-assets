@@ -7,7 +7,6 @@ use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\UriInterface;
 use spicyweb\embeddedassets\adapters\default\Extractor as BaseExtractor;
-use spicyweb\embeddedassets\adapters\bluesky\detectors\Code;
 
 /**
  * Embed extractor class for Bluesky.

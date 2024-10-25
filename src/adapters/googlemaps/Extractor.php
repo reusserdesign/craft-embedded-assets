@@ -3,7 +3,6 @@
 namespace spicyweb\embeddedassets\adapters\googlemaps;
 
 use Embed\Http\Crawler;
-use function Embed\getDirectory;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\UriInterface;
@@ -12,6 +11,7 @@ use spicyweb\embeddedassets\adapters\googlemaps\detectors\Code;
 use spicyweb\embeddedassets\adapters\googlemaps\detectors\ProviderName;
 use spicyweb\embeddedassets\adapters\googlemaps\detectors\Title;
 use spicyweb\embeddedassets\adapters\googlemaps\detectors\Type;
+use function Embed\getDirectory;
 
 /**
  * Embed extractor class for Google Maps.
@@ -27,13 +27,13 @@ class Extractor extends BaseExtractor
         UriInterface $uri,
         RequestInterface $request,
         ResponseInterface $response,
-        Crawler $crawler
+        Crawler $crawler,
     ) {
         parent::__construct($uri, $request, $response, $crawler);
         $requestPath = $this->getRequest()->getUri()->getPath();
         $mode = getDirectory($requestPath, 1);
 
-        if ((substr($mode, 0, 1) === '@') &&  (substr($mode, -1) === 't')) {
+        if ((substr($mode, 0, 1) === '@') && (substr($mode, -1) === 't')) {
             $this->_mode = 'streetview';
         } else {
             $this->_mode = match ($mode) {

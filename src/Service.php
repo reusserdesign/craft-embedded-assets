@@ -22,8 +22,8 @@ use Embed\Http\CurlClient;
 use Embed\Http\Url;
 use spicyweb\embeddedassets\adapters\akamai\Extractor as AkamaiExtractor;
 use spicyweb\embeddedassets\adapters\bluesky\Extractor as BlueskyExtractor;
-use spicyweb\embeddedassets\adapters\default\Extractor as DefaultExtractor;
 use spicyweb\embeddedassets\adapters\default\detectors\Type as TypeDetector;
+use spicyweb\embeddedassets\adapters\default\Extractor as DefaultExtractor;
 use spicyweb\embeddedassets\adapters\googlemaps\Extractor as GoogleMapsExtractor;
 use spicyweb\embeddedassets\adapters\openstreetmap\Extractor as OpenStreetMapExtractor;
 use spicyweb\embeddedassets\adapters\pbs\Extractor as PbsExtractor;
@@ -115,7 +115,7 @@ class Service extends Component
             // Set an Embed user agent here, since maps won't work anyway if the key isn't set
             $clientSettings['user_agent'] = 'Embed PHP library';
         }
-                if ($pluginSettings->facebookKey) {
+        if ($pluginSettings->facebookKey) {
             $embedSettings['facebook:token'] = $embedSettings['instagram:token'] = Craft::parseEnv($pluginSettings->facebookKey);
         }
 
@@ -656,14 +656,18 @@ class Service extends Component
             'providerIcon' => (string)$extractor->icon,
             'publishedTime' => $extractor->publishedTime?->format('Y-m-d'),
             'license' => $extractor->license,
-            'feeds' => array_map(function ($feed) { return (string)$feed; }, $extractor->feeds),
+            'feeds' => array_map(function($feed) {
+                return (string)$feed;
+            }, $extractor->feeds),
 
             // New properties in Embed 4
             'cms' => $extractor->cms,
             'favicon' => (string)$extractor->favicon,
             'keywords' => $extractor->keywords,
             'language' => $extractor->language,
-            'languages' => array_map(function ($language) { return (string)$language; }, $extractor->languages),
+            'languages' => array_map(function($language) {
+                return (string)$language;
+            }, $extractor->languages),
             'redirect' => (string)$extractor->redirect,
         ];
     }
