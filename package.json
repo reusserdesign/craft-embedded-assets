@@ -6,7 +6,8 @@
   "main": "webpack.config.js",
   "scripts": {
     "build-dev": "./node_modules/.bin/ts-standard && ./node_modules/.bin/webpack --mode development",
-    "build": "./node_modules/.bin/ts-standard && ./node_modules/.bin/webpack --mode production"
+    "build": "./node_modules/.bin/ts-standard && ./node_modules/.bin/webpack --mode production",
+    "check-style": "./node_modules/.bin/ts-standard && (ddev composer run-script check-cs || composer run-script check-cs)"
   },
   "repository": {
     "type": "git",
@@ -35,6 +36,7 @@
     "@types/jquery": "^3.5.14",
     "css-loader": "^6.7.1",
     "mini-css-extract-plugin": "^2.6.1",
+    "pre-commit": "^1.2.2",
     "sass": "^1.54.9",
     "sass-loader": "^13.0.2",
     "source-map-loader": "^4.0.0",
@@ -48,5 +50,8 @@
     "ignore": [
       "src/assets/*/dist/**/*.js"
     ]
-  }
+  },
+  "pre-commit": [
+    "check-style"
+  ]
 }
