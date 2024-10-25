@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 5.2.0 - 2024-10-25
 
 ### Changed
 - `spicyweb\embeddedassets\Service::getEmbeddedAsset()` and `spicyweb\embeddedassets\Variable::get()` (`craft.embeddedAssets.get()`) now accept `null` instead of an asset, and return `null` in that case (thanks @nstCactus)
