@@ -115,7 +115,7 @@ class Service extends Component
             // Set an Embed user agent here, since maps won't work anyway if the key isn't set
             $clientSettings['user_agent'] = 'Embed PHP library';
         }
-        if ($pluginSettings->facebookKey) {
+                if ($pluginSettings->facebookKey) {
             $embedSettings['facebook:token'] = $embedSettings['instagram:token'] = Craft::parseEnv($pluginSettings->facebookKey);
         }
 
@@ -221,10 +221,10 @@ class Service extends Component
      * @throws \yii\base\InvalidConfigException
      * @throws \craft\errors\AssetException
      */
-    public function getEmbeddedAsset(Asset $asset): ?EmbeddedAsset
+    public function getEmbeddedAsset(?Asset $asset): ?EmbeddedAsset
     {
         // Embedded assets are just JSON files, so clearly if this isn't a JSON file it can't be an embedded asset
-        if ($asset->kind !== Asset::KIND_JSON) {
+        if ($asset?->kind !== Asset::KIND_JSON) {
             return null;
         }
 
