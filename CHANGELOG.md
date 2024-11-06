@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 5.3.0 - 2024-11-06
 
 ### Added
 - Added `spicyweb\embeddedassets\adapters\ipcamlive\Extractor`
