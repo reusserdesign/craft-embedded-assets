@@ -1,5 +1,17 @@
 # Changelog
 
+## Unreleased
+
+### Added
+- Added `spicyweb\embeddedassets\adapters\ipcamlive\Extractor`
+- Added `spicyweb\embeddedassets\adapters\ipcamlive\detectors\Code`
+- Added `spicyweb\embeddedassets\adapters\ipcamlive\detectors\ProviderName`
+- Added `spicyweb\embeddedassets\adapters\ipcamlive\detectors\ProviderUrl`
+- Added `spicyweb\embeddedassets\adapters\ipcamlive\detectors\Type`
+
+### Changed
+- The default value for `spicyweb\embeddedassets\models\Settings::$whitelist` now includes `'ipcamlive.com'`
+
 ## 5.2.0 - 2024-10-25
 
 ### Changed

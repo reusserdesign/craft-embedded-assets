@@ -94,7 +94,10 @@ class Settings extends Model
         // Instagram
         'instagr.am',
         'instagram.com',
-        
+
+        // IPCamLive
+        'ipcamlive.com',
+
         // Kickstarter
         'kickstarter.com',
         

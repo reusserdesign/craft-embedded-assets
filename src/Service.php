@@ -25,6 +25,7 @@ use spicyweb\embeddedassets\adapters\bluesky\Extractor as BlueskyExtractor;
 use spicyweb\embeddedassets\adapters\default\detectors\Type as TypeDetector;
 use spicyweb\embeddedassets\adapters\default\Extractor as DefaultExtractor;
 use spicyweb\embeddedassets\adapters\googlemaps\Extractor as GoogleMapsExtractor;
+use spicyweb\embeddedassets\adapters\ipcamlive\Extractor as IpCamLiveExtractor;
 use spicyweb\embeddedassets\adapters\openstreetmap\Extractor as OpenStreetMapExtractor;
 use spicyweb\embeddedassets\adapters\pbs\Extractor as PbsExtractor;
 use spicyweb\embeddedassets\adapters\sharepoint\Extractor as SharepointExtractor;
@@ -123,6 +124,7 @@ class Service extends Component
             'akamaized.net' => AkamaiExtractor::class,
             'bsky.app' => BlueskyExtractor::class,
             'bsky.social' => BlueskyExtractor::class,
+            'ipcamlive.com' => IpCamLiveExtractor::class,
             'pbs.org' => PbsExtractor::class,
             'nhpbs.org' => PbsExtractor::class,
             'openstreetmap.org' => OpenStreetMapExtractor::class,
