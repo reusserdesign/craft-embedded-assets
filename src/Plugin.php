@@ -10,6 +10,7 @@ use craft\elements\Asset;
 use craft\events\DefineAssetThumbUrlEvent;
 use craft\events\DefineElementInnerHtmlEvent;
 use craft\events\DefineGqlTypeFieldsEvent;
+use craft\events\RegisterElementActionsEvent;
 use craft\events\RegisterElementHtmlAttributesEvent;
 use craft\events\RegisterElementTableAttributesEvent;
 use craft\events\RegisterGqlTypesEvent;
@@ -24,6 +25,7 @@ use craft\services\Assets;
 use craft\services\Gql;
 use craft\web\twig\variables\CraftVariable;
 use craft\web\View;
+use spicyweb\embeddedassets\actions\Refresh;
 use spicyweb\embeddedassets\assetpreviews\EmbeddedAsset as EmbeddedAssetPreview;
 use spicyweb\embeddedassets\assets\main\MainAsset;
 use spicyweb\embeddedassets\gql\interfaces\EmbeddedAsset as EmbeddedAssetInterface;
@@ -100,6 +102,7 @@ class Plugin extends BasePlugin
             $this->_registerPreviewHandler();
             $this->_registerSaveListener();
             $this->_registerDeleteListener();
+            $this->_registerElementActions();
 
             if ($this->getSettings()->showFieldLinkIcon) {
                 $this->_registerLink();
@@ -265,6 +268,13 @@ class Plugin extends BasePlugin
             if ($event->sender instanceof Asset) {
                 Craft::$app->getCache()->delete($this->methods->getCachedAssetKey($event->sender));
             }
+        });
+    }
+
+    private function _registerElementActions(): void
+    {
+        Event::on(Asset::class, Asset::EVENT_REGISTER_ACTIONS, function(RegisterElementActionsEvent $event) {
+            $event->actions[] = Refresh::class;
         });
     }
 
