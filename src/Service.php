@@ -139,6 +139,10 @@ class Service extends Component
             $adapter->url = (string)Url::create($url);
         }
 
+	if ($adapter->type === 'video' && $adapter->providerName === 'YouTube') {
+            $adapter->url = (string)Url::create($url);
+        }
+
         return $this->_convertFromAdapter($adapter);
     }
 
