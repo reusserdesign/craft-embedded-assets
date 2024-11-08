@@ -5,6 +5,9 @@ namespace spicyweb\embeddedassets\actions;
 use Craft;
 use craft\base\ElementAction;
 use craft\elements\Asset;
+use craft\elements\db\ElementQueryInterface;
+use spicyweb\embeddedassets\Plugin as EmbeddedAssets;
+use spicyweb\embeddedassets\errors\RefreshException;
 
 /**
  * Refresh element action.
@@ -39,5 +42,36 @@ class Refresh extends ElementAction
 JS, [static::class, str_replace('\\', '\\\\', Asset::class)]);
 
         return null;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function performAction(ElementQueryInterface $query): bool
+    {
+        $anySuccess = false;
+        $anyFail = false;
+
+        foreach ($query->all() as $asset) {
+            try {
+                EmbeddedAssets::$plugin->methods->refreshEmbeddedAsset($asset);
+                $anySuccess = true;
+            } catch (RefreshException $e) {
+                $anyFail = true;
+            }
+        }
+
+        if (!$anySuccess && $anyFail) {
+            $this->setMessage(Craft::t('embeddedassets', 'Embedded assets not refreshed.'));
+            return false;
+        }
+
+        if ($anyFail) {
+            $this->setMessage(Craft::t('embeddedassets', 'Some embedded assets refreshed.'));
+        } else {
+            $this->setMessage(Craft::t('embeddedassets', 'Embedded assets refreshed.'));
+        }
+
+        return true;
     }
 }
